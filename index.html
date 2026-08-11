@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sub Radar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color: #1a1a1a; color: white; font-family: Arial, sans-serif;">
+
+    <div id="auth-wrapper">
+        <div class="login-box">
+            <h2 style="color: cyan; border-bottom: 2px dashed purple; padding-bottom: 10px;">Sub Radar Access</h2>
+            <label>Username / Email:</label><br>
+            <input type="text" id="loginUser" class="input-fld" placeholder="Enter username"><br><br>
+
+            <label>Password:</label><br>
+            <input type="password" id="loginPass" class="input-fld" placeholder="***"><br><br>
+
+            <button id="enterBtn" onclick="doLogin()">SIGN IN / UP</button>
+        </div>
+    </div>
+
+    <div id="app-wrapper" style="display: none;">
+        <div id="header-box">
+            <h1 style="display:inline-block; margin-left: 20px; color: white;">Sub Radar</h1>
+
+            <div id="money-box">
+                <select id="currSelect" onchange="changeCurrency()" style="background: black; color: cyan; border: 1px solid purple; padding: 5px; font-weight: bold; margin-right: 10px; cursor: pointer;">
+                    <option value="AED">AED</option>
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="GBP">GBP</option>
+                    <option value="SAR">SAR</option>
+                    <option value="EGP">EGP</option>
+                </select>
+                Total Burn: <b id="totalburn">0.00</b> <span id="currLabel">USD</span>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+
+        <div class="container">
+            <div class="left-panel">
+                <h2 style="border-bottom: 2px solid cyan; padding-bottom:5px;">Add Sub</h2>
+
+                <label>Service Name:</label><br>
+                <input type="text" id="subName" class="input-fld" placeholder="ex: Shopify"><br><br>
+
+
+                <label>Price (Base USD):</label><br>
+                <input type="number" id="subPrice" class="input-fld"><br><br>
+
+                <label>Billing Date:</label><br>
+                <input type="date" id="subDate" class="input-fld"><br><br>
+
+                <button id="saveBtn" onclick="addSub()">SAVE NOW</button>
+                <p id="errorText" style="color: yellow; font-weight:bold;"></p>
+            </div>
+
+            <div class="right-panel">
+                <h2 style="border-bottom: 2px solid cyan; padding-bottom:5px;">My List</h2>
+                <div id="the-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
