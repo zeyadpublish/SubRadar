@@ -13,7 +13,7 @@ var rates = {
 window.onload = function() {
     var dateObj = new Date();
     var dd = String(dateObj.getDate()).padStart(2, '0');
-    var mm = String(dateObj.getMonth() + 1).padStart(2, '0'); 
+    var mm = String(dateObj.getMonth() + 1).padStart(2, '0');
     var yyyy = dateObj.getFullYear();
     var minDateStr = yyyy + '-' + mm + '-' + dd;
     document.getElementById("subDate").setAttribute("min", minDateStr);
@@ -36,7 +36,7 @@ window.onload = function() {
     if(logged == "yes") {
         document.getElementById("auth-wrapper").style.display = "none";
         document.getElementById("app-wrapper").style.display = "block";
-        
+
         var savedDB = localStorage.getItem("mySubsDB");
         if(savedDB != null) {
             subsArray = JSON.parse(savedDB);
@@ -48,17 +48,17 @@ window.onload = function() {
 function doLogin() {
     var u = document.getElementById("loginUser").value;
     var p = document.getElementById("loginPass").value;
-    
+
     if(u == "" || p == "") {
         alert("Please enter both username and password.");
         return;
     }
-    
+
     localStorage.setItem("isLogged", "yes");
-    
+
     document.getElementById("auth-wrapper").style.display = "none";
     document.getElementById("app-wrapper").style.display = "block";
-    
+
     var savedDB = localStorage.getItem("mySubsDB");
     if(savedDB != null) {
         subsArray = JSON.parse(savedDB);
@@ -96,7 +96,7 @@ function loadData() {
         var rateMult = rates[currentCurr] || 1;
         var convertedPrice = subsArray[i].price * rateMult;
         total = total + convertedPrice;
-        
+
         var today = new Date();
         var subDate = new Date(subsArray[i].d);
         var diff = subDate.getTime() - today.getTime();
@@ -109,15 +109,12 @@ function loadData() {
         var textDays = daysLeft + " days left";
         if(daysLeft <= 0) { textDays = "BILLS TODAY"; }
 
-        var html = '<div class="sub-card">';
-        html += '<div class="sub-info">';
+        var html = '<div class="card-sub">';
         html += '<h4>' + subsArray[i].title + '</h4>';
         html += '<p>Cost: <strong>' + convertedPrice.toFixed(2) + ' ' + currentCurr + '</strong></p>';
+        html += '<span class="' + cl + '">' + textDays + '</span>';
+        html += '<button class="del-btn" onclick="deleteItem(' + subsArray[i].id + ')">DELETE</button>';
         html += '</div>';
-        html += '<div class="sub-actions">';
-        html += '<span class="badge ' + cl + '">' + textDays + '</span>';
-        html += '<button class="btn-danger" onclick="deleteItem(' + subsArray[i].id + ')">Delete</button>';
-        html += '</div></div>';
 
         listHtml.innerHTML += html;
     }
@@ -133,7 +130,7 @@ function deleteItem(idd) {
         }
     }
     subsArray = temp;
-    
+
     localStorage.setItem("mySubsDB", JSON.stringify(subsArray));
     loadData();
 }
@@ -147,7 +144,7 @@ function addSub() {
         document.getElementById("errorText").innerText = "Please fill in all fields.";
         return;
     }
-    
+
     var inputDate = new Date(dt);
     var now = new Date();
     now.setHours(0,0,0,0);
@@ -167,12 +164,12 @@ function addSub() {
     };
 
     subsArray.push(newObj);
-    
+
     localStorage.setItem("mySubsDB", JSON.stringify(subsArray));
-    
+
     document.getElementById("subName").value = "";
     document.getElementById("subPrice").value = "";
     document.getElementById("subDate").value = "";
-    
+
     loadData();
 }
