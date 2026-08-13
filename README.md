@@ -3,3 +3,7 @@
 <img width="1180" height="820" alt="IMG_3532" src="https://github.com/user-attachments/assets/29724145-56cd-471e-b673-ebdba61edcfc" />
 I made this simple website to solve people problems some times you have a bill and forget this website tells you when you next bill will be
 here is some screenshots of the website 
+How to run locally
+1-clone or download this repository in you computer
+2-open project folder in your code editor
+3-open the index.html file directly in your browser
